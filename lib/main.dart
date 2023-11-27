@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:movies/movies_list.dart';
+import 'config.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,10 +22,11 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _getListagemAPI() async {
     await Future.delayed(Duration(seconds: 5));
+
     http.get(
       Uri.https('api.themoviedb.org', '/4/list/1'),
       headers: {
-        'Authorization': 'Bearer <<token>>',
+        'Authorization': 'Bearer ${Config.apiToken}',
         'accept': 'application/json',
       },
     ).then(
